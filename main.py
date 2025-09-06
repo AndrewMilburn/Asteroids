@@ -3,6 +3,7 @@ from constants import *
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+import sys
 
 def main():
     pygame.init()
@@ -25,9 +26,15 @@ def main():
             if event.type == pygame.QUIT:
                 return
         screen.fill((0,0,0))
-
-
         updatable.update(dt)
+
+        for asteroid in asteroids:
+            if asteroid.collision_detection(player):
+                print("Game Over")
+                sys.exit()
+
+
+
 # drawable.draw(screen) - Can't do this as there is no associated Image for the SPRITE
 # which is what the underlying class is derived from 
         for stuff in drawable:
