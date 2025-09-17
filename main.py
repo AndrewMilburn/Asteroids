@@ -35,8 +35,12 @@ def main():
             if asteroid.collision_detection(player):
                 print("Game Over")
                 sys.exit()
+            for shot in shots:
+                if asteroid.collision_detection(shot):
+                    asteroid.kill()
+                    shot.kill()
 
-
+                 
 
 # drawable.draw(screen) - Can't do this as there is no associated Image for the SPRITE
 # which is what the underlying class is derived from 
